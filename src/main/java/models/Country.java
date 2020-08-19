@@ -3,6 +3,7 @@ package models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Country {
     @NotBlank(message = "Country name can't be blank")
     private String name;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "country", cascade = REMOVE, fetch = LAZY)
     private Set<Hotel> hotels = new LinkedHashSet<>();
 
