@@ -1,3 +1,5 @@
+package configs;
+
 import configs.HibernateConfig;
 import models.Country;
 import org.hibernate.Session;
