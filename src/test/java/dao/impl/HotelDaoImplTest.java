@@ -1,6 +1,6 @@
 package dao.impl;
 
-import configs.DaoConfig;
+import configs.AppConfig;
 import configs.HibernateConfig;
 import dao.HotelDao;
 import models.Country;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {DaoConfig.class, HibernateConfig.class})
+@ContextConfiguration(classes = {AppConfig.class, HibernateConfig.class})
 @Transactional
 public class HotelDaoImplTest {
 
