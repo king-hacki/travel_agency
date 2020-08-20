@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = "dao")
-public class DaoConfig {
+public class AppConfig {
 
     @Bean
     public HotelDao hotelDao() {
@@ -22,5 +22,4 @@ public class DaoConfig {
     public CountryDao countryDao() {
         return new CountryDaoImpl();
     }
-
 }
