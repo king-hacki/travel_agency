@@ -8,9 +8,11 @@ import dao.impl.HotelDaoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import services.HotelService;
+import services.impl.HotelServiceImpl;
 
 @Configuration
-@ComponentScan(basePackages = "dao")
+@ComponentScan(basePackages = {"dao", "services"})
 public class AppConfig {
 
     @Bean
@@ -22,4 +24,10 @@ public class AppConfig {
     public CountryDao countryDao() {
         return new CountryDaoImpl();
     }
+
+    @Bean
+    public HotelService hotelService() {
+        return new HotelServiceImpl(hotelDao(), countryDao());
+    }
+
 }

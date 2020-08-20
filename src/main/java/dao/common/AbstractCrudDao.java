@@ -25,6 +25,7 @@ public abstract class AbstractCrudDao<T> implements CrudHibernateRepository<T> {
     }
 
     public T findOne(long id) {
+        if (id == 0) return null;
         return (T) getCurrentSession().get(clazz, id);
     }
 
