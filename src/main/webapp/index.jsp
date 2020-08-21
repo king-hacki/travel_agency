@@ -4,7 +4,7 @@
     <title>Home</title>
 </head>
 <body>
-    <%@include file="WEB-INF/header.html"%>
+    <%@include file="WEB-INF/static/header.html"%>
     <h1>Welcome to the Travel Agency</h1>
 </body>
 </html>

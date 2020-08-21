@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     @GetMapping({"/home", "/"})
-    public String homeIndex(ModelMap modelMap) {
+    public String homeIndex() {
         log.info("home index controller ran");
-        modelMap.addAttribute("message", "Welcome to Travel Agency");
         return "../../index";
     }
 }

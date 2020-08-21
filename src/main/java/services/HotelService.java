@@ -9,9 +9,11 @@ import java.util.Set;
 @Service
 public interface HotelService {
 
-    Set<Hotel> getHotelsFromCountry(Country country);
+    Set<Hotel> getHotelsFromCountry(long countryId);
 
     Hotel createNewHotel(Hotel hotel);
+
+    Hotel getById(long hotelId);
 
 }
 

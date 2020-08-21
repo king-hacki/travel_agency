@@ -1,8 +1,6 @@
 package models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -26,10 +24,14 @@ public class Hotel {
     @NotBlank(message = "Hotel name can't be blank")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "hotel", cascade = REMOVE, fetch = LAZY)
     Set<Room> rooms = new LinkedHashSet<>();
 

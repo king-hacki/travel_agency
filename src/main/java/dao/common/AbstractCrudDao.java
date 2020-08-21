@@ -5,11 +5,13 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static java.lang.String.format;
 
 @Repository
+@Transactional
 public abstract class AbstractCrudDao<T> implements CrudHibernateRepository<T> {
 
     private Class<T> clazz;
