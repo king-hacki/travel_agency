@@ -19,7 +19,6 @@ import javax.transaction.Transactional;
 import java.util.Set;
 
 @Controller
-@Slf4j
 @RequestMapping("/hotel")
 @ComponentScan(basePackageClasses = {AppConfig.class, HibernateConfig.class})
 @Transactional

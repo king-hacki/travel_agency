@@ -1,14 +1,15 @@
 package services.impl;
 
 import dao.CountryDao;
-import lombok.Setter;
 import models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import services.CountryService;
 
 import javax.transaction.Transactional;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -27,5 +28,10 @@ public class CountryServiceImpl implements CountryService {
         //  TODO create custom exception
         if (countryEntity == null) throw new IllegalArgumentException("Country with given id doesn't exist");
         return countryEntity;
+    }
+
+    @Override
+    public List<Country> getAllCountries() {
+        return countryDao.findAll();
     }
 }
