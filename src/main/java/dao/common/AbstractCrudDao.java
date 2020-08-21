@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.List;
 
 import static java.lang.String.format;
@@ -36,8 +37,9 @@ public abstract class AbstractCrudDao<T> implements CrudHibernateRepository<T> {
         return getCurrentSession().createQuery("FROM " + clazz.getName()).list();
     }
 
-    public void save(T entity) {
-        getCurrentSession().persist(entity);
+    @SuppressWarnings("unchecked")
+    public Long save(T entity) {
+        return (Long) getCurrentSession().save(entity);
     }
 
     @SuppressWarnings("unchecked")

@@ -40,6 +40,7 @@ public class Room {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "room", fetch = LAZY)
+    @OrderBy("startRentDate ASC")
     private Set<Rent> rents = new TreeSet<>();
 
 }

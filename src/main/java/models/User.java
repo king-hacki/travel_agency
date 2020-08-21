@@ -6,14 +6,12 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.FetchType.LAZY;
@@ -42,6 +40,7 @@ public class User {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "user", cascade = REMOVE, fetch = LAZY)
-    private Set<Rent> rents = new LinkedHashSet<>();
+    @OrderBy("startRentDate ASC")
+    private Set<Rent> rents = new TreeSet<>();
 
 }

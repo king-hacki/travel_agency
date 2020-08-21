@@ -13,6 +13,8 @@ public interface CrudHibernateRepository<T> {
 
     T create(final T entity);
 
+    Long save(T entity);
+
     T update(final T entity);
 
     void delete(final T entity);

@@ -30,12 +30,14 @@ public class RoomServiceImpl implements RoomService {
         if (start.isBefore(LocalDate.now())) throw new IllegalArgumentException("bad date");
         Hotel hotelEntity = hotelDao.findOne(hotelId);
         Set<Room> rooms = hotelEntity.getRooms();
+        rooms.forEach(room -> room.getRents().forEach(System.out::println));
         List<Room> freeRooms = new ArrayList<>();
         room: for (Room room : rooms) {
             //  add rooms if start date is after last rent
-            if (new ArrayList<>(room.getRents()).get(room.getRents().size() - 1).getEndRentDate().isBefore(start))
+            if (room.getRents().isEmpty() || new ArrayList<>(room.getRents()).get(room.getRents().size() - 1).getEndRentDate().isBefore(start)) {
                 freeRooms.add(room);
-            else
+                break;
+            } else {
                 //  else go through all rents
                 for (Rent rent : room.getRents()) {
                     System.out.println("rent = " + rent);
@@ -43,14 +45,17 @@ public class RoomServiceImpl implements RoomService {
                     LocalDate rentEnd = rent.getEndRentDate();
                     if (start.isBefore(rentStart) && end.isBefore(rentStart)) {
                         freeRooms.add(room);
-                        continue;
+                        break;
+
                     }
                     if ((start.isBefore(rentStart) || start.isEqual(rentStart)) && end.isAfter(rentStart))
                         break room;
+
                     if ((start.isAfter(rentStart) || start.isEqual(rentStart)) &&
                             (start.isBefore(rentEnd) || start.isEqual(rentEnd)))
                         break room;
                 }
+            }
         }
         return freeRooms;
     }

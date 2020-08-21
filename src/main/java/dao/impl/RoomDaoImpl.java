@@ -6,9 +6,11 @@ import models.Hotel;
 import models.Room;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.Set;
 
 @Repository
+@Transactional
 public class RoomDaoImpl extends AbstractCrudDao<Room> implements RoomDao {
 
     public RoomDaoImpl() {

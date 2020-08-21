@@ -13,6 +13,12 @@
         <p>--------------</p>
         <p>Room number: ${room.number}</p>
         <p>Room level: ${room.level}</p>
+        <form action="/rent/book" method="post">
+            <input type="hidden" name="room_id" id="room_id" value="${room.id}">
+            <input type="hidden" name="start" id="start" value="${start}">
+            <input type="hidden" name="end" id="end" value="${end}">
+            <input type="submit" value="Book">
+        </form>
     </c:forEach>
 </body>
 </html>
