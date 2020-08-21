@@ -2,7 +2,9 @@ package models;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +39,8 @@ public class User {
 
     private String password;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "user", cascade = REMOVE, fetch = LAZY)
     private Set<Rent> rents = new LinkedHashSet<>();
 

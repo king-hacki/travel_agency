@@ -41,7 +41,9 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public Hotel getById(long hotelId) {
-        return null;
+        Hotel hotelEntity = hotelDao.findOne(hotelId);
+        if (hotelEntity == null) throw new IllegalArgumentException("Hotel doesn't exist");
+        return hotelEntity;
     }
 
 
