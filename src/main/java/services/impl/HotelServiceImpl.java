@@ -34,9 +34,14 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Hotel createNewHotel(Hotel hotel) {
-        if (hotelDao.findOne(hotel.getId()) != null) throw new IllegalArgumentException("Hotel already exist");
-        return hotelDao.create(hotel);
+    public Hotel createNewHotel(Hotel hotel, long countryId) {
+        Country countryEntity = countryDao.findOne(countryId);
+        if (countryEntity == null) throw new IllegalArgumentException("Country doesn't exist");
+        hotel.setCountry(countryEntity);
+        Long hotelEntityId = hotelDao.save(hotel);
+        Hotel hotelEntity = hotelDao.findOne(hotelEntityId);
+        countryEntity.getHotels().add(hotelEntity);
+        return hotelEntity;
     }
 
     @Override

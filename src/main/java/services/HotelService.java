@@ -11,7 +11,7 @@ public interface HotelService {
 
     Set<Hotel> getHotelsFromCountry(long countryId);
 
-    Hotel createNewHotel(Hotel hotel);
+    Hotel createNewHotel(Hotel hotel, long countryId);
 
     Hotel getById(long hotelId);
 

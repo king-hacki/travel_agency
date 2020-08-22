@@ -45,4 +45,6 @@ public class HotelController {
         return "hotel_list";
     }
 
+
+
 }

@@ -6,9 +6,18 @@
 </head>
 <body>
     <%@include file="../static/header.html"%>
+    <h2>Create New Hotel</h2>
+    <form action="/user_manager/create_hotel" method="get">
+        <input type="hidden" name="countryId" id="countryId" value="${country.id}">
+        <input type="hidden" name="name" id="name" value="${country.name}">
+        <input type="submit" value="Create hotel in country ${country.name}">
+    </form>
     <h2>All Hotels in Country: ${country.name}</h2>
     <c:forEach items="${hotels}" var="hotel">
-        <h4>${hotel.name}</h4>
+        <h4>Name: ${hotel.name}</h4>
+        <form action="/room/all/${hotel.id}">
+            <input type="submit" value="All Rooms in hotel">
+        </form>
         <form action="/room/${hotel.id}" method="post">
             <table>
                 <tr>
