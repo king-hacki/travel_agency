@@ -12,4 +12,6 @@ public interface CountryService {
 
     List<Country> getAllCountries();
 
+    Country createCountry(Country country);
+
 }

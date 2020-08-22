@@ -34,4 +34,10 @@ public class CountryServiceImpl implements CountryService {
     public List<Country> getAllCountries() {
         return countryDao.findAll();
     }
+
+    @Override
+    public Country createCountry(Country country) {
+        Long countryEntityId = countryDao.save(country);
+        return countryDao.findOne(countryEntityId);
+    }
 }
