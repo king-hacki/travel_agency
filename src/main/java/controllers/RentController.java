@@ -3,18 +3,19 @@ package controllers;
 import configs.AppConfig;
 import configs.HibernateConfig;
 import models.Rent;
+import models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import services.RentService;
+import services.UserService;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/rent")
@@ -23,10 +24,12 @@ import java.time.LocalDate;
 public class RentController {
 
     private RentService rentService;
+    private UserService userService;
 
     @Autowired
-    public RentController(RentService rentService) {
+    public RentController(RentService rentService, UserService userService) {
         this.rentService = rentService;
+        this.userService = userService;
     }
 
     @PostMapping("/book")
@@ -38,6 +41,15 @@ public class RentController {
         modelMap.addAttribute("rentEntity", rentEntity);
         System.out.println("rentEntity = " + rentEntity);
         return "rent_registrate";
+    }
+
+    @GetMapping("/{userId}")
+    public String userRents(@PathVariable long userId, ModelMap modelMap) {
+        User userEntity = userService.getUserById(userId);
+        Set<Rent> userRents = userEntity.getRents();
+        modelMap.addAttribute("userRents", userRents);
+        modelMap.addAttribute("user", userEntity);
+        return "user_rents";
     }
 
 }
