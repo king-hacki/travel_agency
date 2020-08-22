@@ -7,14 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import services.CountryService;
-import services.HotelService;
-import services.RentService;
-import services.RoomService;
-import services.impl.CountryServiceImpl;
-import services.impl.HotelServiceImpl;
-import services.impl.RentServiceImpl;
-import services.impl.RoomServiceImpl;
+import services.*;
+import services.impl.*;
 
 @Configuration
 @ComponentScan(basePackages = {"dao", "services", "controllers"})
@@ -68,6 +62,12 @@ public class AppConfig {
     @Autowired
     public RentService rentService(RentDao rentDao, RoomDao roomDao, UserDao userDao) {
         return new RentServiceImpl(rentDao, roomDao, userDao);
+    }
+
+    @Bean
+    @Autowired
+    public UserService userService(UserDao userDao) {
+        return new UserServiceImpl(userDao);
     }
 
 }
