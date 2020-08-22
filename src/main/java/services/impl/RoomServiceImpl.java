@@ -2,17 +2,22 @@ package services.impl;
 
 import dao.HotelDao;
 import dao.RoomDao;
+import models.Country;
 import models.Hotel;
 import models.Rent;
 import models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import services.RoomService;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Service
+@Transactional
 public class RoomServiceImpl implements RoomService {
 
     private RoomDao roomDao;
@@ -36,7 +41,6 @@ public class RoomServiceImpl implements RoomService {
             //  add rooms if start date is after last rent
             if (room.getRents().isEmpty() || new ArrayList<>(room.getRents()).get(room.getRents().size() - 1).getEndRentDate().isBefore(start)) {
                 freeRooms.add(room);
-                break;
             } else {
                 //  else go through all rents
                 for (Rent rent : room.getRents()) {
@@ -46,7 +50,6 @@ public class RoomServiceImpl implements RoomService {
                     if (start.isBefore(rentStart) && end.isBefore(rentStart)) {
                         freeRooms.add(room);
                         break;
-
                     }
                     if ((start.isBefore(rentStart) || start.isEqual(rentStart)) && end.isAfter(rentStart))
                         break room;
@@ -58,6 +61,17 @@ public class RoomServiceImpl implements RoomService {
             }
         }
         return freeRooms;
+    }
+
+    @Override
+    public Room createNewRoom(Room room, long hotelId) {
+        Hotel hotelEntity = hotelDao.findOne(hotelId);
+        if (hotelEntity == null) throw new IllegalArgumentException("Country doesn't exist");
+        room.setHotel(hotelEntity);
+        Long roomEntityId = roomDao.save(room);
+        Room roomEntity = roomDao.findOne(roomEntityId);
+        hotelEntity.getRooms().add(roomEntity);
+        return roomEntity;
     }
 
 

@@ -1,5 +1,6 @@
 package services;
 
+import models.Hotel;
 import models.Room;
 import org.springframework.stereotype.Service;
 
@@ -10,5 +11,7 @@ import java.util.List;
 public interface RoomService {
 
     List<Room> findAvailableRoomsByPeriod(long hotelId, LocalDate start, LocalDate end);
+
+    Room createNewRoom(Room room, long hotelId);
 
 }

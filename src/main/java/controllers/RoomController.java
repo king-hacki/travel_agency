@@ -9,16 +9,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import services.HotelService;
 import services.RoomService;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/room")
@@ -48,6 +46,18 @@ public class RoomController {
         modelMap.addAttribute("hotel", hotelEntity);
         System.out.println("availableRooms = " + availableRooms);
         return "room_list";
+    }
+
+    @GetMapping("/all/{hotelId}")
+    public String roomsByHotelId(@PathVariable long hotelId,
+                                 ModelMap modelMap) {
+        Hotel hotelEntity = hotelService.getById(hotelId);
+        Set<Room> rooms = hotelEntity.getRooms();
+        modelMap.addAttribute("hotelName", hotelEntity.getName());
+        modelMap.addAttribute("hotelId", hotelEntity.getId());
+        modelMap.addAttribute("rooms", rooms);
+        System.out.println("rooms = " + rooms);
+        return "room_by_list";
     }
 
 }
