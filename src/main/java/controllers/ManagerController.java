@@ -3,10 +3,7 @@ package controllers;
 
 import configs.AppConfig;
 import configs.HibernateConfig;
-import models.Country;
-import models.Hotel;
-import models.Room;
-import models.User;
+import models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -21,6 +18,7 @@ import services.UserService;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/user_manager")
@@ -115,6 +113,15 @@ public class ManagerController {
         return "manager_action/all_users";
     }
 
-
+    @GetMapping("/all_users/{userId}")
+    public String userRent(@PathVariable long userId,
+                           ModelMap modelMap) {
+        User userEntity = userService.getUserById(userId);
+        Set<Rent> userRents = userEntity.getRents();
+        modelMap.addAttribute("user", userEntity);
+        modelMap.addAttribute("userRents", userRents);
+        System.out.println("userRents = " + userRents);
+        return "manager_action/user_rents";
+    }
 
 }

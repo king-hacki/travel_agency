@@ -15,7 +15,7 @@
                 <td>${user.lastName} |</td>
                 <td>${user.email} |</td>
                 <td>${user.password} |</td>
-                <td><a href=""></a></td>
+                <td><a href="all_users/${user.id}"/>User Rents</td>
             </tr>
         </table>
     </c:forEach>
