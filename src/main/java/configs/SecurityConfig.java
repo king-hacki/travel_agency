@@ -30,18 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.authenticationFilter = authenticationFilter;
     }
 
-    @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        String code = "user1Pass";
-        String encode = passwordEncoder().encode(code);
-        System.out.println("encode = " + encode);
-        System.out.println("code = " + code);
-        auth.inMemoryAuthentication()
-                .withUser("user1")
-                .password(encode)
-                .roles("USER");
-    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -49,12 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().and().cors().disable()
+        http.csrf().disable()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll()
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .and()
-                .authorizeRequests()
+                 .authorizeRequests()
                 .antMatchers("/user_manager/**")
                 .hasRole("MANAGER")
                 .anyRequest().authenticated()
@@ -63,9 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint((req, res, exc) -> res.sendRedirect("/login"))
                 .and()
                 .exceptionHandling()
-                .accessDeniedHandler((req, res, exc) -> res.sendRedirect("/access-denied"));
-//                .and()
-//                .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .accessDeniedHandler((req, res, exc) -> res.sendRedirect("/access-denied"))
+                .and()
+                .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 
     }

@@ -1,6 +1,9 @@
 package security.service.impl;
 
+import configs.AppConfig;
+import configs.HibernateConfig;
 import dao.UserDao;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import models.security_models.User;
@@ -14,6 +17,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@ComponentScan(basePackageClasses = {AppConfig.class, HibernateConfig.class})
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
