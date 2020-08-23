@@ -3,7 +3,7 @@ package controllers;
 import configs.AppConfig;
 import configs.HibernateConfig;
 import models.Rent;
-import security.model.User;
+import models.security_models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.format.annotation.DateTimeFormat;

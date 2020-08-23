@@ -1,8 +1,7 @@
 package security.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import security.model.User;
+import models.security_models.User;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

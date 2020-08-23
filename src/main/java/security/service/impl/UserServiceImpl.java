@@ -2,9 +2,8 @@ package security.service.impl;
 
 import dao.UserDao;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import security.model.User;
+import models.security_models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import security.service.UserService;

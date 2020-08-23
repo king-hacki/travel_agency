@@ -5,7 +5,7 @@ import dao.RoomDao;
 import dao.UserDao;
 import models.Rent;
 import models.Room;
-import security.model.User;
+import models.security_models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import services.RentService;

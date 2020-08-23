@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import security.model.User;
+import models.security_models.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -24,6 +24,7 @@ public class WebAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        System.out.println("IN attemptAuthentication FILTER");
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 request.getParameter("username"),
                 request.getParameter("password"));

@@ -35,16 +35,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/login-form", "/home", "/").permitAll()
-                .anyRequest().authenticated();
+        System.out.println("IN SECURITY CONFIG");
+        http.csrf().and().cors().disable()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll()
+                .and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/user_manager/**")
+                .hasRole("MANAGER")
+                .anyRequest().authenticated()
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint((req, res, exc) -> res.sendRedirect("/login"))
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler((req, res, exc) -> res.sendRedirect("/access-denied"))
+                .and()
+                .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        http.addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        http.exceptionHandling().authenticationEntryPoint(
-                (request, response, authException) -> response.sendRedirect("/login-form"));
-        http.exceptionHandling().accessDeniedHandler(
-                (request, response, accessDeniedException) -> response.sendRedirect("/access-denied"));
     }
 
 }

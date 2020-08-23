@@ -2,7 +2,7 @@ package dao.impl;
 
 import dao.UserDao;
 import dao.common.AbstractCrudDao;
-import security.model.User;
+import models.security_models.User;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
