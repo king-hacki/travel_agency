@@ -1,6 +1,7 @@
 package services.impl;
 
 import dao.CountryDao;
+import exceptions.MissingCountryIdException;
 import models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,8 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public Country getById(long countryId) {
         Country countryEntity = countryDao.findOne(countryId);
-        //  TODO create custom exception
-        if (countryEntity == null) throw new IllegalArgumentException("Country with given id doesn't exist");
+        System.out.println("countryEntity = " + countryEntity);
+        if (countryEntity == null) throw new MissingCountryIdException("Country with given id doesn't exist");
         return countryEntity;
     }
 

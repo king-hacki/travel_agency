@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import security.service.UserService;
+import security.service.impl.UserServiceImpl;
 import services.*;
 import services.impl.*;
 
 @Configuration
-@ComponentScan(basePackages = {"dao", "services", "controllers"})
+@ComponentScan(basePackages = {"dao", "services", "controllers", "security"})
 public class AppConfig {
 
     @Bean

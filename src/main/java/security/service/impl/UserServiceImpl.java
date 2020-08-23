@@ -1,13 +1,17 @@
-package services.impl;
+package security.service.impl;
 
 import dao.UserDao;
-import models.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import services.UserService;
+import security.service.UserService;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -31,5 +35,11 @@ public class UserServiceImpl implements UserService {
         //  TODO custom exception
         if (userEntity == null) throw new IllegalArgumentException("no user");
         return userEntity;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<User> user = userDao.getUserByEmail(email);
+        return user.orElseThrow(() -> new UsernameNotFoundException("user not found"));
     }
 }

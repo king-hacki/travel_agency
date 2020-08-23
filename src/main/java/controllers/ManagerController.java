@@ -10,10 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import security.model.User;
 import services.CountryService;
 import services.HotelService;
 import services.RoomService;
-import services.UserService;
+import security.service.UserService;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;

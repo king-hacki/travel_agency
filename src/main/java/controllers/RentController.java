@@ -3,7 +3,7 @@ package controllers;
 import configs.AppConfig;
 import configs.HibernateConfig;
 import models.Rent;
-import models.User;
+import security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import services.RentService;
-import services.UserService;
+import security.service.UserService;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
