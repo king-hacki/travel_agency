@@ -12,14 +12,6 @@
         <input type="hidden" name="name" id="name" value="${country.name}">
         <input type="submit" value="Create hotel in country ${country.name}">
     </form>
-    <c:choose>
-        <c:when test="${error_messag == null}">
-            pizza
-        </c:when>
-        <c:otherwise>
-            burger
-        </c:otherwise>
-    </c:choose>
     <h2>All Hotels in Country: ${country.name}</h2>
     <c:forEach items="${hotels}" var="hotel">
         <h4>Name: ${hotel.name}</h4>
