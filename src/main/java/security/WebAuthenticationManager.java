@@ -22,6 +22,7 @@ public class WebAuthenticationManager implements AuthenticationManager {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        System.out.println("in authentication");
         Authentication webAuthentication;
         for (AuthenticationProvider authenticationProvider : authenticationProviders) {
             webAuthentication = authenticationProvider.authenticate(authentication);

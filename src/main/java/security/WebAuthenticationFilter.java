@@ -33,12 +33,14 @@ public class WebAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
+        System.out.println("successfulAuthentication filter");
         SecurityContextHolder.getContext().setAuthentication(authResult);
         response.sendRedirect("/home");
     }
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException {
+        System.out.println("unsuccessfulAuthentication filter");
         SecurityContextHolder.clearContext();
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.sendRedirect("/login-form?error");
