@@ -30,8 +30,9 @@ public class AppConfig {
     }
 
     @Bean
-    public RoomDao roomDao() {
-        return new RoomDaoImpl();
+    @Autowired
+    public RoomDao roomDao(HotelDao hotelDao) {
+        return new RoomDaoImpl(hotelDao);
     }
 
     @Bean

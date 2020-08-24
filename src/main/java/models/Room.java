@@ -1,9 +1,6 @@
 package models;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import models.enums.RoomLevel;
 
 import javax.persistence.*;
@@ -19,6 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Room {
 
     @Id

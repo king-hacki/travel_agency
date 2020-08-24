@@ -22,6 +22,7 @@ public class UserDaoImpl extends AbstractCrudDao<User> implements UserDao {
         return getCurrentSession()
                 .createQuery("SELECT user FROM User user WHERE user.email = :email")
                 .setParameter("email", email)
+                .setMaxResults(1)
                 .uniqueResultOptional();
     }
 }

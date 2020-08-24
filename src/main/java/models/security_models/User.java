@@ -1,10 +1,7 @@
 package models.security_models;
 
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import models.Rent;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails {
 
     @Id
@@ -34,6 +32,7 @@ public class User implements UserDetails {
     private String lastName;
 
     @Email(message = "not valid email pattern")
+    @Column(unique = true)
     private String email;
 
     private String password;

@@ -12,5 +12,4 @@ public interface RoomDao extends CrudHibernateRepository<Room> {
 
     Set<Room> findAllByHotel(Hotel hotel);
 
-
 }

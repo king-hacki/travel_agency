@@ -1,6 +1,7 @@
 package models;
 
 import lombok.*;
+import models.enums.RoomLevel;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

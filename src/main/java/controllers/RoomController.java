@@ -44,7 +44,6 @@ public class RoomController {
         modelMap.addAttribute("start", start);
         modelMap.addAttribute("end", end);
         modelMap.addAttribute("hotel", hotelEntity);
-        System.out.println("availableRooms = " + availableRooms);
         return "room_list";
     }
 
