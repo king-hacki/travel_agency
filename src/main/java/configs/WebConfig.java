@@ -46,6 +46,5 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/access-denied").setViewName("security/access_denied_page");
         registry.addViewController("/home").setViewName("../../index");
         registry.addViewController("/").setViewName("../../index");
-
     }
 }

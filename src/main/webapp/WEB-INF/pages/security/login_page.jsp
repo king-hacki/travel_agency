@@ -26,5 +26,6 @@
             </tr>
         </table>
     </form>
+    <a href="/registration">Registration</a>
 </body>
 </html>
