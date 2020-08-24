@@ -22,8 +22,4 @@ public class RoomDaoImpl extends AbstractCrudDao<Room> implements RoomDao {
         return null;
     }
 
-    @Override
-    public Room create(Room entity) {
-        return null;
-    }
 }

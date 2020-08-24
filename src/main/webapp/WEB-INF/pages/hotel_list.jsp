@@ -6,12 +6,14 @@
 </head>
 <body>
     <%@include file="../static/header.html"%>
+    <% if (request.isUserInRole("MANAGER")) { %>
     <h2>Create New Hotel</h2>
     <form action="/user_manager/create_hotel" method="get">
         <input type="hidden" name="countryId" id="countryId" value="${country.id}">
         <input type="hidden" name="name" id="name" value="${country.name}">
         <input type="submit" value="Create hotel in country ${country.name}">
     </form>
+    <% } %>
     <h2>All Hotels in Country: ${country.name}</h2>
     <c:forEach items="${hotels}" var="hotel">
         <h4>Name: ${hotel.name}</h4>

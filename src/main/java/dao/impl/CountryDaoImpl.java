@@ -16,8 +16,4 @@ public class CountryDaoImpl extends AbstractCrudDao<Country> implements CountryD
         super(Country.class);
     }
 
-    @Override
-    public Country create(Country entity) {
-        return null;
-    }
 }

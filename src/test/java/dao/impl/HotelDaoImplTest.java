@@ -36,11 +36,11 @@ public class HotelDaoImplTest {
         Country country = new Country(1L, "Country", null);
         session.save(country);
         Country entityCountry = session.find(Country.class, country.getId());
-        Hotel newHotel = new Hotel();
-        newHotel.setName("Hotel");
-        newHotel.setCountry(entityCountry);
-        Hotel expected = hotelDao.create(newHotel);
-        Hotel actual = session.find(Hotel.class, expected.getId());
+        Hotel expected = new Hotel();
+        expected.setName("Hotel");
+        expected.setCountry(entityCountry);
+        Long expectedId = hotelDao.save(expected);
+        Hotel actual = session.find(Hotel.class, expectedId);
         assertEquals(expected, actual);
     }
 

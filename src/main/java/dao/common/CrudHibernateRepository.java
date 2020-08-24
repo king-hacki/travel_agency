@@ -11,8 +11,6 @@ public interface CrudHibernateRepository<T> {
 
     List<T> findAll();
 
-    T create(final T entity);
-
     Long save(T entity);
 
     T update(final T entity);

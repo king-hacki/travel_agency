@@ -45,6 +45,11 @@ public class AppConfig {
     }
 
     @Bean
+    public RoleDao roleDao() {
+        return new RoleDaoImpl();
+    }
+
+    @Bean
     @Autowired
     public HotelService hotelService(HotelDao hotelDao, CountryDao countryDao) {
         return new HotelServiceImpl(hotelDao, countryDao);
@@ -70,8 +75,8 @@ public class AppConfig {
 
     @Bean
     @Autowired
-    public UserService userService(UserDao userDao) {
-        return new UserServiceImpl(userDao);
+    public UserService userService(UserDao userDao, RoleDao roleDao) {
+        return new UserServiceImpl(userDao, roleDao);
     }
 
 }

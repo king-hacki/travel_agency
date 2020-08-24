@@ -31,11 +31,4 @@ public class HotelDaoImpl extends AbstractCrudDao<Hotel> implements HotelDao {
         Country countryEntity = countryDao.findOne(country.getId());
         return countryEntity.getHotels();
     }
-
-    @Override
-    public Hotel create(Hotel entity) {
-        Hotel newHotel = new Hotel(entity.getId(), entity.getName(), entity.getCountry(), entity.getRooms());
-        getCurrentSession().save(newHotel);
-        return findOne(newHotel.getId());
-    }
 }

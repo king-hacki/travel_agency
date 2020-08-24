@@ -13,4 +13,6 @@ public interface UserService extends UserDetailsService {
 
     List<User> allUsers();
     User getUserById(long userId);
+    void createUser(User user);
+
 }

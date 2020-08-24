@@ -17,11 +17,6 @@ public class UserDaoImpl extends AbstractCrudDao<User> implements UserDao {
     }
 
     @Override
-    public User create(User entity) {
-        return null;
-    }
-
-    @Override
     @SuppressWarnings("unchecked")
     public Optional<User> getUserByEmail(String email) {
         return getCurrentSession()

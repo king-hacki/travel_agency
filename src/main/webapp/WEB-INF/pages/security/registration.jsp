@@ -7,24 +7,19 @@
 </head>
 <body>
     <h2>User Registration</h2>
+    <div>
     <form:form action="/registration" method="post" modelAttribute="user">
-        <table>
-
-            <td><form:label path="firsName">First name: </form:label></td>
-            <td><form:input path="firsName"/></td>
-
-            <td><form:label path="lastName">Last name: </form:label></td>
-            <td><form:input path="lastName"/></td>
-
-            <td><form:label path="email">Email: </form:label></td>
-            <td><form:input path="email"/></td>
-
-            <td><form:label path="password">Password: </form:label></td>
-            <td><form:input path="password"/></td>
-
-            <td><input type="submit" value="User Registration"></td>
-            <td><input type="reset" value="Reset"></td>
-        </table>
+        <p><form:label path="firstName">First name: </form:label></p>
+        <p><form:input path="firstName"/></p>
+        <p><form:label path="lastName">Last name: </form:label></p>
+        <p><form:input path="lastName"/></p>
+        <p><form:label path="email">Email: </form:label></p>
+        <p><form:input path="email"/></p>
+        <p><form:label path="password">Password: </form:label></p>
+        <p><form:input path="password"/></p>
+        <p><input type="submit" value="User Registration"></p>
+        <p><input type="reset" value="Reset"></p>
     </form:form>
+    </div>
 </body>
 </html>

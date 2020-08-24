@@ -15,9 +15,4 @@ public class RentDaoImpl extends AbstractCrudDao<Rent> implements RentDao {
         super(Rent.class);
     }
 
-
-    @Override
-    public Rent create(Rent entity) {
-        return null;
-    }
 }

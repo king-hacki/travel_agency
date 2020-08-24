@@ -6,10 +6,12 @@
 </head>
 <body>
     <%@include file="../static/header.html"%>
+    <% if (request.isUserInRole("MANAGER")) { %>
     <form action="/user_manager/create_room" method="get">
         <input type="hidden" name="hotelId" id="hotelId" value="${hotelId}">
         <input type="submit" value="Create new room">
     </form>
+    <% } %>
     <h2>Rooms in Hotel ${hotelName}</h2>
     <c:forEach items="${rooms}" var="room">
         <table>
