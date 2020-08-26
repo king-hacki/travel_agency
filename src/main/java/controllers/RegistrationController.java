@@ -39,7 +39,7 @@ public class RegistrationController {
     public String registrationAction(@Valid @ModelAttribute("user") User user,
                                      BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            throw new IllegalArgumentException("validation error");
+            return "security/registration";
         userService.createUser(user);
         return "security/login_page";
     }
