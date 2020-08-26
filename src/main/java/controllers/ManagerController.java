@@ -56,9 +56,8 @@ public class ManagerController {
     @PostMapping("/create_country")
     public String createCountryAction(@Valid @ModelAttribute("country") Country country,
                                       BindingResult bindingResult) {
-        //  TODO custom exception
         if (bindingResult.hasErrors())
-            throw new IllegalArgumentException("Create country exception");
+            return "manager_action/create_country";
         System.out.println("country name = " + country.getName());
         countryService.createCountry(country);
         return "redirect:/country/list";
@@ -78,9 +77,8 @@ public class ManagerController {
     public String createHotelAction(@PathVariable long countryId,
                                     @Valid @ModelAttribute("hotel") Hotel hotel,
                                     BindingResult bindingResult) {
-        //  TODO custom exception
         if (bindingResult.hasErrors())
-            throw new IllegalArgumentException("Create hotel exception");
+            return "manager_action/create_hotel";
         System.out.println("hotel name = " + hotel.getName());
         hotelService.createNewHotel(hotel, countryId);
         return "redirect:http://localhost:8080/hotel/{countryId}";
@@ -98,9 +96,8 @@ public class ManagerController {
     public String createRoomAction(@PathVariable long hotelId,
                                     @Valid @ModelAttribute("room") Room room,
                                     BindingResult bindingResult) {
-        //  TODO custom exception
         if (bindingResult.hasErrors())
-            throw new IllegalArgumentException("Create room exception");
+            return "manager_action/create_room";
         System.out.println("room name = " + room.getNumber());
         roomService.createNewRoom(room, hotelId);
         return "redirect:http://localhost:8080/room/all/{hotelId}";

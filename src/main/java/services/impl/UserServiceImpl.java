@@ -1,6 +1,7 @@
 package services.impl;
 
 import dao.UserDao;
+import exceptions.UserNotFoundByIdException;
 import models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,8 @@ import services.UserService;
 
 import javax.transaction.Transactional;
 import java.util.List;
+
+import static java.lang.String.format;
 
 @Service
 @Transactional
@@ -28,8 +31,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(long userId) {
         User userEntity = userDao.findOne(userId);
-        //  TODO custom exception
-        if (userEntity == null) throw new IllegalArgumentException("no user");
+        if (userEntity == null)
+            throw new UserNotFoundByIdException(format("No user with id : %d", userId));
         return userEntity;
     }
 }

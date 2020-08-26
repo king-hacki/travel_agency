@@ -7,8 +7,9 @@ import lombok.ToString;
 import models.enums.RoomLevel;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -25,7 +26,8 @@ public class Room {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @NotNull(message = "Room must have number")
+    @NotNull(message = "Room number can't be empty")
+    @Digits(integer = 6, fraction = 0)
     private Long number;
 
     @Enumerated(STRING)

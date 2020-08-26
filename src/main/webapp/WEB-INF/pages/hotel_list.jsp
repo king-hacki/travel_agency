@@ -6,6 +6,9 @@
 </head>
 <body>
     <%@include file="../static/header.html"%>
+    <c:if test="${error ne null}">
+        <p style="color: red">${error}</p>
+    </c:if>
     <h2>Create New Hotel</h2>
     <form action="/user_manager/create_hotel" method="get">
         <input type="hidden" name="countryId" id="countryId" value="${country.id}">

@@ -3,7 +3,7 @@ package models;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -21,7 +21,7 @@ public class Hotel {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Hotel name can't be blank")
+    @NotEmpty(message = "Hotel name can't be empty")
     private String name;
 
     @ManyToOne(fetch = LAZY)

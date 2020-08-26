@@ -11,7 +11,7 @@ import services.*;
 import services.impl.*;
 
 @Configuration
-@ComponentScan(basePackages = {"dao", "services", "controllers"})
+@ComponentScan(basePackages = {"dao", "services", "controllers", "exceptions"})
 public class AppConfig {
 
     @Bean
