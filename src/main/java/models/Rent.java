@@ -1,9 +1,6 @@
 package models;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import models.security_models.User;
 
 import javax.persistence.*;
@@ -14,6 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Rent implements Comparable<Rent> {
 
     @Id

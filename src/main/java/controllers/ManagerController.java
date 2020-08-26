@@ -24,7 +24,6 @@ import java.util.Set;
 @Controller
 @RequestMapping("/user_manager")
 @ComponentScan(basePackageClasses = {AppConfig.class, HibernateConfig.class})
-@Transactional
 public class ManagerController {
 
     private UserService userService;
@@ -60,7 +59,7 @@ public class ManagerController {
         //  TODO custom exception
         if (bindingResult.hasErrors())
             throw new IllegalArgumentException("Create country exception");
-        System.out.println("country name = " + country.getName());
+        System.out.println("country" + country);
         countryService.createCountry(country);
         return "redirect:/country/list";
     }

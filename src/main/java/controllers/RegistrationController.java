@@ -20,7 +20,6 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/registration")
 @ComponentScan(basePackageClasses = {AppConfig.class, HibernateConfig.class})
-@Transactional
 public class RegistrationController {
 
     private UserService userService;

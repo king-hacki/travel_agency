@@ -50,6 +50,7 @@ public class RoomControllerTest {
     private MockMvc mockMvc;
 
     Hotel hotel;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Before
     public void setUp() {
@@ -62,9 +63,7 @@ public class RoomControllerTest {
     public void findRooms() throws Exception {
         mockMvc.perform(get("/room/all/{hotelId}", hotel.getId()))
                 .andExpect(model().size(3))
-                .andExpect(model().attributeExists("hotelName"))
-                .andExpect(model().attributeExists("hotelId"))
-                .andExpect(model().attributeExists("rooms"))
+                .andExpect(model().attributeExists("hotelName", "hotelId", "rooms"))
                 .andExpect(view().name("room_by_list"))
                 .andExpect(status().isOk());
     }
@@ -72,16 +71,12 @@ public class RoomControllerTest {
     @Test
     public void findRoomsTest() throws Exception {
         Room room = new Room(1L, 100L, RoomLevel.STANDARD, hotel, new HashSet<>());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Mockito.when(roomService.findAvailableRoomsByPeriod(hotel.getId(), now(), now())).thenReturn(List.of(room));
         mockMvc.perform(post("/room/{hotelId}", hotel.getId())
                 .param("start", now().format(formatter))
                 .param("end", now().format(formatter)))
                 .andExpect(model().size(4))
-                .andExpect(model().attributeExists("availableRooms"))
-                .andExpect(model().attributeExists("start"))
-                .andExpect(model().attributeExists("end"))
-                .andExpect(model().attributeExists("hotel"))
+                .andExpect(model().attributeExists("availableRooms", "start", "hotel", "end"))
                 .andExpect(view().name("room_list"))
                 .andExpect(status().isOk());
     }
