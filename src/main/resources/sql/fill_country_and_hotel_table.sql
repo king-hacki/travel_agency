@@ -28,9 +28,9 @@ INSERT INTO Hotel(id, name, country_id) VALUES (7, 'Varshava Hotel', 2);
 INSERT INTO Hotel(id, name, country_id) VALUES (8, 'Hostel', 2);
 INSERT INTO Hotel(id, name, country_id) VALUES (9, 'Poland Hotel', 2);
 
-INSERT INTO Hotel(id, name, country_id) VALUES (9, 'USA 1 Hotel', 3);
-INSERT INTO Hotel(id, name, country_id) VALUES (10, 'USA 2 Hotel', 3);
-INSERT INTO Hotel(id, name, country_id) VALUES (11, 'USA 3 Hotel', 3);
+INSERT INTO Hotel(id, name, country_id) VALUES (10, 'USA 1 Hotel', 3);
+INSERT INTO Hotel(id, name, country_id) VALUES (11, 'USA 2 Hotel', 3);
+INSERT INTO Hotel(id, name, country_id) VALUES (12, 'USA 3 Hotel', 3);
 
 INSERT INTO Room(id, level, number, hotel_id) VALUES (1, 'STANDARD', 101, 1);
 INSERT INTO Room(id, level, number, hotel_id) VALUES (2, 'STANDARD', 201, 1);
