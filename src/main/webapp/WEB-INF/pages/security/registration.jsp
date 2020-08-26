@@ -20,7 +20,7 @@
         <p><form:input path="email"/></p>
         <p><form:label path="password">Password: </form:label></p>
         <p><form:errors path="password" cssStyle="color: darkred"/></p>
-        <p><form:input path="password"/></p>
+        <p><form:password  path="password"/></p>
         <p><input type="submit" value="User Registration"></p>
         <p><input type="reset" value="Reset"></p>
     </form:form>
