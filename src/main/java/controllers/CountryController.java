@@ -17,6 +17,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/country")
 @ComponentScan(basePackageClasses = {AppConfig.class, HibernateConfig.class})
+@Transactional
 public class CountryController {
 
     private CountryService countryService;

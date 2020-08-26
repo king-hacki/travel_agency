@@ -37,9 +37,6 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String email;
 
-    @NotEmpty(message = "Password can't be empty")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{4,}$",
-            message = "Password must have at least one number and have size minimum 4")
     private String password;
 
     @ToString.Exclude

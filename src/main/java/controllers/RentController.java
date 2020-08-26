@@ -20,6 +20,7 @@ import java.util.Set;
 @Controller
 @RequestMapping("/rent")
 @ComponentScan(basePackageClasses = {AppConfig.class, HibernateConfig.class})
+@Transactional
 public class RentController {
 
     private RentService rentService;

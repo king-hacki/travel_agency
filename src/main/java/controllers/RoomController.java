@@ -21,6 +21,7 @@ import java.util.Set;
 @Controller
 @RequestMapping("/room")
 @ComponentScan(basePackageClasses = {AppConfig.class, HibernateConfig.class})
+@Transactional
 public class RoomController {
 
     private RoomService roomService;

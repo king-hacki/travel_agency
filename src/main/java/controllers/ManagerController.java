@@ -24,6 +24,7 @@ import java.util.Set;
 @Controller
 @RequestMapping("/user_manager")
 @ComponentScan(basePackageClasses = {AppConfig.class, HibernateConfig.class})
+@Transactional
 public class ManagerController {
 
     private UserService userService;

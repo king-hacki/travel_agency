@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import services.CountryService;
 
 import javax.transaction.Transactional;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import static java.lang.String.format;
@@ -38,6 +39,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country createCountry(Country country) {
+        country.setHotels(new LinkedHashSet<>());
         Long countryEntityId = countryDao.save(country);
         return countryDao.findOne(countryEntityId);
     }
