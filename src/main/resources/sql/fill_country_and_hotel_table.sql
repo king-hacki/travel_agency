@@ -20,8 +20,8 @@ INSERT INTO Hotel(id, name, country_id) VALUES (1, 'Ukraine_Hotel_01', 1);
 INSERT INTO Hotel(id, name, country_id) VALUES (2, 'Ukraine_Hotel_02', 1);
 
 INSERT INTO Room(id, level, number, hotel_id) VALUES (1, 'STANDARD', 100, 1);
-INSERT INTO Room(id, level, number, hotel_id) VALUES (1, 'STANDARD', 200, 1);
-INSERT INTO Room(id, level, number, hotel_id) VALUES (1, 'STANDARD', 300, 1);
-INSERT INTO Room(id, level, number, hotel_id) VALUES (2, 'STANDARD', 200, 2);
+INSERT INTO Room(id, level, number, hotel_id) VALUES (2, 'STANDARD', 200, 1);
+INSERT INTO Room(id, level, number, hotel_id) VALUES (3, 'STANDARD', 300, 1);
+INSERT INTO Room(id, level, number, hotel_id) VALUES (4, 'STANDARD', 200, 2);
 
 COMMIT ;
