@@ -3,14 +3,16 @@ package exceptions.handler;
 
 import configs.AppConfig;
 import configs.HibernateConfig;
-import exceptions.*;
+import exceptions.BadDateException;
+import exceptions.CountryNotExistException;
+import exceptions.HotelNotExistException;
+import exceptions.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.server.ServerErrorException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import services.CountryService;
@@ -52,7 +54,7 @@ public class CustomExceptionHandler {
         return "hotel_list";
     }
 
-    @ExceptionHandler(UserNotFoundByIdException.class)
+    @ExceptionHandler(UserNotFoundException.class)
     private String handleUserNotFoundById(HttpServletRequest request, Exception exception) {
         log.error(exception.getMessage());
         request.setAttribute("error", exception.getMessage());
@@ -66,7 +68,7 @@ public class CustomExceptionHandler {
         return mv;
     }
 
-    @ExceptionHandler(ServerErrorException.class)
+    @ExceptionHandler(Exception.class)
     public ModelAndView handle500(Exception ex) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("exceptions/500");

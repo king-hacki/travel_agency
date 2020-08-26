@@ -44,7 +44,7 @@ public class RoomServiceImpl implements RoomService {
                     format("end date : %s can't be before start date : %s", end.format(formatter), start.format(formatter)));
         }
         if (start.isBefore(LocalDate.now()))
-            throw new BadDateException(format("Date : % already in a past", start.format(formatter)));
+            throw new BadDateException(format("Date : %s already in a past", start.format(formatter)));
         Hotel hotelEntity = hotelDao.findOne(hotelId);
         Set<Room> rooms = hotelEntity.getRooms();
         rooms.forEach(room -> room.getRents().forEach(System.out::println));

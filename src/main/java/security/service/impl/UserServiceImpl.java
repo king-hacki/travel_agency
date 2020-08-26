@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import security.service.UserService;
 
 import javax.transaction.Transactional;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserService {
         Role userRole = roleDao.findOne(1L);
         String encodePassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encodePassword);
+        user.setRents(new LinkedHashSet<>());
         user.setRole(userRole);
         userDao.save(user);
     }
