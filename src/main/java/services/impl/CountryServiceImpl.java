@@ -1,16 +1,16 @@
 package services.impl;
 
 import dao.CountryDao;
-import exceptions.MissingCountryIdException;
+import exceptions.CountryNotExistException;
 import models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import services.CountryService;
 
 import javax.transaction.Transactional;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
+
+import static java.lang.String.format;
 
 @Service
 @Transactional
@@ -26,8 +26,8 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public Country getById(long countryId) {
         Country countryEntity = countryDao.findOne(countryId);
-        System.out.println("countryEntity = " + countryEntity);
-        if (countryEntity == null) throw new MissingCountryIdException("Country with given id doesn't exist");
+        if (countryEntity == null)
+            throw new CountryNotExistException(format("Country with id: %d didn't find", countryId));
         return countryEntity;
     }
 

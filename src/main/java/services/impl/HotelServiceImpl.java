@@ -2,7 +2,8 @@ package services.impl;
 
 import dao.CountryDao;
 import dao.HotelDao;
-import lombok.Setter;
+import exceptions.CountryNotExistException;
+import exceptions.HotelNotExistException;
 import models.Country;
 import models.Hotel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import services.HotelService;
 
 import javax.transaction.Transactional;
 import java.util.Set;
+
+import static java.lang.String.format;
 
 @Service
 @Transactional
@@ -28,15 +31,16 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public Set<Hotel> getHotelsFromCountry(long countryId) {
         Country countryEntity = countryDao.findOne(countryId);
-        //  TODO custom exception
-        if (countryEntity == null) throw new IllegalArgumentException("Country doesn't exist");
+        if (countryEntity == null)
+            throw new CountryNotExistException(format("Country with id: %d didn't find", countryId));
         return hotelDao.findAllByCountry(countryEntity);
     }
 
     @Override
     public Hotel createNewHotel(Hotel hotel, long countryId) {
         Country countryEntity = countryDao.findOne(countryId);
-        if (countryEntity == null) throw new IllegalArgumentException("Country doesn't exist");
+        if (countryEntity == null)
+            throw new CountryNotExistException(format("Country with id: %d didn't find", countryId));
         hotel.setCountry(countryEntity);
         Long hotelEntityId = hotelDao.save(hotel);
         Hotel hotelEntity = hotelDao.findOne(hotelEntityId);
@@ -47,7 +51,8 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public Hotel getById(long hotelId) {
         Hotel hotelEntity = hotelDao.findOne(hotelId);
-        if (hotelEntity == null) throw new IllegalArgumentException("Hotel doesn't exist");
+        if (hotelEntity == null)
+            throw new HotelNotExistException(format("Hotel with id: %d didn't find", hotelId));
         return hotelEntity;
     }
 

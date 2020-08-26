@@ -6,12 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.REMOVE;
-import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -25,7 +24,7 @@ public class Country {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Country name can't be blank")
+    @NotEmpty(message = "Country name can't be empty")
     private String name;
 
     @ToString.Exclude

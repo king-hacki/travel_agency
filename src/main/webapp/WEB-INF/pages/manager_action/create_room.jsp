@@ -9,17 +9,16 @@
     <%@include file="../../static/header.html"%>
     <h2>Create new Room</h2>
     <form:form action="/user_manager/create_room/${hotelId}" method="post" modelAttribute="room">
-        <table>
-            <td><form:label path="number">Number</form:label></td>
-            <td><form:input path="number"/></td>
-            <td><form:select path="level">
-                <form:option value="ECONOMY"/>
-                <form:option value="STANDARD"/>
-                <form:option value="LUX"/>
-                <form:option value="SUPERLUX"/>
-            </form:select></td>
-            <td><input type="submit" value="Create Room"></td>
-        </table>
+        <p><form:label path="number">Number</form:label></p>
+        <p><form:errors path="number" cssStyle="color: darkred"/></p>
+        <p><form:input path="number"/></p>
+        <p><form:select path="level">
+            <form:option value="ECONOMY"/>
+            <form:option value="STANDARD"/>
+            <form:option value="LUX"/>
+            <form:option value="SUPERLUX"/>
+        </form:select></p>
+        <p><input type="submit" value="Create Room"></p>
     </form:form>
 </body>
 </html>

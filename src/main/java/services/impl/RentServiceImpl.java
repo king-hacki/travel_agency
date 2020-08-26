@@ -32,7 +32,6 @@ public class RentServiceImpl implements RentService {
     public Rent bookRoom(long roomId, LocalDate start, LocalDate end) {
         Room roomEntity = roomDao.findOne(roomId);
         if (roomEntity == null) throw new IllegalArgumentException("Room doesn't exist");
-        //  TODO change in security
         User userEntity = userDao.findOne(1L);
         Rent newRent = new Rent();
         newRent.setEndRentDate(end);

@@ -94,13 +94,11 @@
       <artifactId>tomcat-dbcp</artifactId>
       <version>${tomcat-dbcp.version}</version>
     </dependency>
-
     <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>2.0.1.Final</version>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.0.13.Final</version>
     </dependency>
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

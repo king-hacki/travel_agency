@@ -1,20 +1,26 @@
 package services.impl;
 
+import configs.AppConfig;
+import configs.HibernateConfig;
 import dao.HotelDao;
 import dao.RoomDao;
-import models.Country;
+import exceptions.BadDateException;
 import models.Hotel;
 import models.Rent;
 import models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import services.RoomService;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import static java.lang.String.format;
 
 @Service
 @Transactional
@@ -31,8 +37,14 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<Room> findAvailableRoomsByPeriod(long hotelId, LocalDate start, LocalDate end) {
-        if (start.isAfter(end)) throw new IllegalArgumentException("bad date");
-        if (start.isBefore(LocalDate.now())) throw new IllegalArgumentException("bad date");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        if (start == null || end == null) throw new BadDateException("date can't be empty");
+        if (start.isAfter(end)) {
+            throw new BadDateException(
+                    format("end date : %s can't be before start date : %s", end.format(formatter), start.format(formatter)));
+        }
+        if (start.isBefore(LocalDate.now()))
+            throw new BadDateException(format("Date : % already in a past", start.format(formatter)));
         Hotel hotelEntity = hotelDao.findOne(hotelId);
         Set<Room> rooms = hotelEntity.getRooms();
         rooms.forEach(room -> room.getRents().forEach(System.out::println));
@@ -44,7 +56,6 @@ public class RoomServiceImpl implements RoomService {
             } else {
                 //  else go through all rents
                 for (Rent rent : room.getRents()) {
-                    System.out.println("rent = " + rent);
                     LocalDate rentStart = rent.getStartRentDate();
                     LocalDate rentEnd = rent.getEndRentDate();
                     if (start.isBefore(rentStart) && end.isBefore(rentStart)) {
@@ -66,7 +77,6 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room createNewRoom(Room room, long hotelId) {
         Hotel hotelEntity = hotelDao.findOne(hotelId);
-        if (hotelEntity == null) throw new IllegalArgumentException("Country doesn't exist");
         room.setHotel(hotelEntity);
         Long roomEntityId = roomDao.save(room);
         Room roomEntity = roomDao.findOne(roomEntityId);
