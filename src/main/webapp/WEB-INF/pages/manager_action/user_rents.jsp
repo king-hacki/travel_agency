@@ -19,5 +19,8 @@
             </tr>
         </table>
     </c:forEach>
+    <form action="/country/list" method="get">
+        <input type="submit" value="To Country List">
+    </form>
 </body>
 </html>

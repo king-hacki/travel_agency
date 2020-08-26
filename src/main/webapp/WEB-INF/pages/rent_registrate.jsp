@@ -11,5 +11,9 @@
     <h2>On Date:</h2>
     <h3>Start: ${rentEntity.startRentDate}</h3>
     <h3>End: ${rentEntity.endRentDate}</h3>
+
+    <form action="/user/rents" method="get">
+        <input type="submit" value="Your Rents">
+    </form>
 </body>
 </html>
