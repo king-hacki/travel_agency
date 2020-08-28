@@ -1,4 +1,6 @@
 HELP.md
+travel_agency/
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**

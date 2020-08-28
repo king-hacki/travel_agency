@@ -15,10 +15,18 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.14</maven.compiler.source>
-    <maven.compiler.target>1.14</maven.compiler.target>
+    <maven.compiler.source>14</maven.compiler.source>
+    <maven.compiler.target>14</maven.compiler.target>
     <tomcat-dbcp.version>9.0.0.M26</tomcat-dbcp.version>
   </properties>
+
+  <distributionManagement>
+    <repository>
+      <id>internal.repo</id>
+      <name>MyCo Internal Repository</name>
+      <url>file://travel_agency</url>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
 
@@ -78,6 +86,12 @@
     </dependency>
 
     <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.0.13.Final</version>
+    </dependency>
+
+    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.21</version>
@@ -94,11 +108,7 @@
       <artifactId>tomcat-dbcp</artifactId>
       <version>${tomcat-dbcp.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>6.0.13.Final</version>
-    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -139,6 +149,17 @@
     <finalName>travel_agency</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+        <plugin>
+          <groupId>org.codehaus.cargo</groupId>
+          <artifactId>cargo-maven2-plugin</artifactId>
+          <version>1.8.0</version>
+          <configuration>
+            <container>
+              <containerId>tomcat9x</containerId>
+              <type>embedded</type>
+            </container>
+          </configuration>
+        </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
